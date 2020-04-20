@@ -39,7 +39,10 @@ pipeline {
             }
            }
          }
-		 stage ('Deploy to Tomcat'){
-		 deploy adapters: [tomcat9(credentialsId: 'Tomcat', path: '', url: 'http://34.232.196.28/manager/html')], contextPath: '/var/lib/jenkins/workspace/Build.job-Web_deploy/target/', war: '**/*.war'
-}
+
+		stage ('Tomcat deploy')
+				steps {
+				sh 'deploy adapters: [tomcat9(credentialsId: 'Tomcat', path: '', url: 'http://34.232.196.28/manager/html')], contextPath: '/var/lib/jenkins/workspace/Build.job-Web_deploy/target/', war: '**/*.war''
+				}
+				
 }
