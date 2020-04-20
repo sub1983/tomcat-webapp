@@ -27,4 +27,16 @@ pipeline {
                 }
             }
         }
+
+         stage ('SonarQube analysis') {
+             environment {
+             def scannerHome = tool 'sonarscanner'
+             }
+             steps {
+                withSonarQubeEnv('jenkinsonar') {
+                sh 'mvn clean package sonar:sonar'
+             }
+            }
+           }
+         }
 }
